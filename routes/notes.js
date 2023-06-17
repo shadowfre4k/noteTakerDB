@@ -12,14 +12,12 @@ notes.get("/", (req, res) => {
 
 notes.post("/", (req, res) => {
   let incomingData = req.body;
-  console.log(incomingData);
   let dataToSave = {
     id: uuidv4(),
     title: incomingData.title,
     text: incomingData.text,
   };
   let returnData = readAndAppend(dataToSave, "./db/db.json");
-  console.log(returnData);
   return res.status(400);
 });
 
