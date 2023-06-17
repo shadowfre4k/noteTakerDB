@@ -10,4 +10,20 @@ notes.get("/", (req, res) => {
   readFromFile("./db/db.json").then((data) => res.json(JSON.parse(data)));
 });
 
+notes.post("/", (req, res) => {
+  let incomingData = req.body;
+  console.log(incomingData);
+  let dataToSave = {
+    id: uuidv4(),
+    title: incomingData.title,
+    text: incomingData.text,
+  };
+  let returnData = readAndAppend(dataToSave, "./db/db.json");
+  console.log(returnData);
+  return res.status(400);
+});
+
+notes.delete("/:id", (req, res) => {
+  let noteid = req.params.id;
+});
 module.exports = notes;
